@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: library-test-1_development
+
+test:
+  <<: *default
+  database: library-test-1_test
+
+production:
+  <<: *default
+  database: library-test-1_production
+  username: library-test-1
+  password: <%= ENV['LIBRARY-TEST-1_DATABASE_PASSWORD'] %>

@@ -1,0 +1,11 @@
+APP_HOST: 'localhost:3000'
+
+DEVISE_MAILER_SENDER: 'example@example.com'
+MAILER_DELIVERY_METHOD: 'test'
+SECRET_KEY_BASE: 'secret key'
+SESSION_STORE_KEY: '_app_name_session'
+
+SMTP_HOST: ''
+SMTP_PORT: ''
+SMTP_USER_NAME: ''
+SMTP_PASSWORD: ''
