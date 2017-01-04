@@ -1,0 +1,14 @@
+.container
+  .row
+    h1= @book.title
+    hr
+    p
+      strong= _("Author: ")
+      = @book.author
+    p
+      strong= _("Pages: ")
+      = @book.pages
+    p
+      strong= _("Quantity: ")
+      = "#{@book.current_quantity} / #{@book.quantity}"
+    = link_to _("Back"), books_path
