@@ -6,6 +6,7 @@ class CreateBooks < ActiveRecord::Migration
       t.integer :pages
       t.integer :year
       t.integer :quantity
+      t.integer :current_quantity
 
       t.timestamps null: false
     end

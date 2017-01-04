@@ -1,1 +1,23 @@
-h1 Books#index
+.container
+  .row
+    h1= _("Books")
+    table-responsive
+      table.table.table-condensed.table-hover
+        thead
+          tr
+            th= _("Title")
+            th= _("Author")
+            th= _("Published")
+            th= _("Pages")
+            th= _("Quantity")
+            th= _("Actions")
+        tbody
+          - @books.each do |book|
+            tr
+              td= book.title
+              td= book.author
+              td= book.year
+              td= book.pages
+              td= "#{book.current_quantity} / #{book.quantity}"
+              td=
+    = paginate @books

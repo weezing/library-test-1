@@ -22,8 +22,9 @@ ActiveRecord::Schema.define(version: 20170104224631) do
     t.integer  "pages"
     t.integer  "year"
     t.integer  "quantity"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "current_quantity"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "users", force: :cascade do |t|
