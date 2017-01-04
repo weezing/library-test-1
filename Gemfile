@@ -4,6 +4,7 @@ ruby '2.3.1'
 gem 'bootstrap', '~> 4.0.0.alpha5'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'devise'
+gem 'faker'
 gem 'figaro'
 gem 'gettext_i18n_rails'
 gem 'jbuilder', '~> 2.0'
@@ -31,7 +32,6 @@ end
 group :development, :test do
   gem 'byebug'
   gem 'factory_girl_rails'
-  gem 'faker'
   gem 'gettext', '>=3.0.2', :require => false
   gem 'pry-rails'
   gem 'pry-rescue'
