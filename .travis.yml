@@ -1,0 +1,13 @@
+rvm:
+- 2.3.1
+bundler_args: "--without development production --deployment"
+branches:
+  only:
+  - master
+deploy:
+  provider: heroku
+  api_key:
+    secure: n1KDPTgakmstIPs+EZaE4Ftwl9WRJu0f9ssj4nmJcwRDFnbFVXfYmeNrzYflfP1F66fiKToeFTALjBNNDvw+Fpv800m9i/59SABtEDzpasDexRKNxq6drOMRO+hm/K49dQn13XRLF5553zjYEXIt+rVk4ksJvWJDszELkoKnvhuEbojulmiZtwt+6tIq2Yoz08fNFdKIsGBQTd2zuXvO1T3Fzlcp+5gNuBDlvjXMg+RkoXUl3hvFko/z9md7mOiM4iG0Fa2RAlhqs8DYshIfzFxWPrLO0lhXQ1sJ9ARC51AYyMkZuhU0MVHy2PvrHK2QTsmJiWprbaY6/FMRaSGyl0s/KWNFQFRlOJosD7N/4nDH4rEGTyJVfiX5UGK5DmFsS41gTgGZx1Vwx7CA1dP0eFxJtWSDqPayr11sNIW1qBfC6uf2ST1RzW4ag7t4AKfaw92wDZVmu65elfeY60kapi/oNg6vNZy/6nU9SGkHYh/imX+DlT1BF5ZidKgBxNNUCl/ckxXiOF/sgsnF5tCTs3qdKeI0WiI3UDxtyjgDZpQAKmWvUgtZO/3DwKWpmYfblr8Xa7hAVgGTIIIU3nJTixeEAOjmU7hLNzZKgH3dTNWR2ZFjU52vkYu9t1YXMbceptbI7k1hdV9yrS+R2g9o6dJNxATNC7atDIbSjTzNjEE=
+  app: library-test-1
+  on:
+    repo: weezing/library-test-1
