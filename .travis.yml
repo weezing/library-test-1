@@ -1,5 +1,7 @@
 rvm:
 - 2.3.1
+before_script:
+- cp config/database.yml.example config/database.yml
 bundler_args: "--without development production --deployment"
 branches:
   only:
