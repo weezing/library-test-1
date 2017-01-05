@@ -58,7 +58,7 @@ class BooksController < ApplicationController
     if service.call
       redirect_to books_path, notice: _("Book borrowed successfully")
     else
-      redirect_to books_path, alert: _("Out of stock!")
+      redirect_to books_path, alert: _("This book can't be borrowed")
     end
   end
 

@@ -18,4 +18,15 @@ describe BorrowBookService do
       and change(user.borrows, :count).by(0).
       and change{book.current_quantity}.by(0)
   end
+
+  it "fails when user already has this book" do
+    user = create(:user)
+    book = create(:book)
+    borrow = create(:borrow, user: user, book: book)
+    service = BorrowBookService.new(user, book)
+
+    expect{ service.call }.to change(Borrow, :count).by(0).
+      and change(user.borrows, :count).by(0).
+      and change{book.current_quantity}.by(0)
+  end
 end

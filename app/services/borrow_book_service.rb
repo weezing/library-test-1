@@ -14,7 +14,10 @@ class BorrowBookService
   private
 
   def book_available?
-    @book.current_quantity > 0
+    Borrow.where(
+      user: @user,
+      book: @book
+    ).blank? && @book.current_quantity > 0
   end
 
   def borrow_book
