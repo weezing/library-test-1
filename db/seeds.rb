@@ -11,9 +11,3 @@
     isbn: Faker::Code.isbn
   )
 end
-
-
-Book.all.each do |book|
-  book.isbn = Faker::Code.isbn
-  book.save
-end

@@ -86,14 +86,14 @@ describe CreateBookForm do
       form = CreateBookForm.new(params)
 
       expect(form.valid?).to eq false
-      expect(form.errors[:year]).to include("Gutenberg invented printing in 1450")
+      expect(form.errors[:year]).to include("must be greater than or equal to 1450")
     end
 
     it "year: too late" do
       params = {
         title: "Title",
         author: "Author",
-        year: 1449,
+        year: Time.zone.now.year + 1,
         pages: 200,
         quantity: 2,
         isbn: "111-111"
@@ -101,7 +101,7 @@ describe CreateBookForm do
       form = CreateBookForm.new(params)
 
       expect(form.valid?).to eq false
-      expect(form.errors[:year]).to include("book from future cannot be added")
+      expect(form.errors[:year]).to include("must be less than or equal to 2017")
     end
 
     it "pages: presence" do
@@ -146,7 +146,7 @@ describe CreateBookForm do
       form = CreateBookForm.new(params)
 
       expect(form.valid?).to eq false
-      expect(form.errors[:pages]).to include("book without pages cannot be added")
+      expect(form.errors[:pages]).to include("must be greater than or equal to 1")
     end
 
     it "quantity: presence" do
@@ -191,7 +191,7 @@ describe CreateBookForm do
       form = CreateBookForm.new(params)
 
       expect(form.valid?).to eq false
-      expect(form.errors[:quantity]).to include("must be greater than zero")
+      expect(form.errors[:quantity]).to include("must be greater than or equal to 0")
     end
 
     it "isbn: presence" do
