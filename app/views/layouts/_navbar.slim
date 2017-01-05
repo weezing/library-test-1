@@ -4,6 +4,8 @@ nav.navbar.bg-faded
       = link_to "Home", root_path, class: "btn"
     .float-md-right
       - if current_user
+        = link_to _("My books"), my_books_books_path, class: "btn"
+        = link_to _("All books"), books_path, class: "btn"
         = link_to _("Sign out"), destroy_user_session_path, class: "btn", method: :delete
       - else
         = link_to _("Sign in"), new_user_session_path, class: "btn"

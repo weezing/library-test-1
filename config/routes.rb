@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   resources :books do
     patch :borrow, on: :member
     patch :return, on: :member
+    get :my_books, on: :collection
   end
 end

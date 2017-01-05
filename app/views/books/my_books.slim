@@ -1,0 +1,21 @@
+.container
+  .row
+    h1= _("My books")
+    table-responsive
+      table.table.table-condensed.table-hover
+        thead
+          tr
+            th= _("Title")
+            th= _("Author")
+            th= _("Published")
+            th= _("Pages")
+            th= _("Actions")
+        tbody
+          - @books.each do |book|
+            tr
+              td= link_to book.title, book_path(book)
+              td= book.author
+              td= book.year
+              td= book.pages
+              td= link_to _("Return"), return_book_path(book), method: :patch, class: "btn btn-sm btn-primary"
+    = paginate @books

@@ -72,9 +72,9 @@ class BooksController < ApplicationController
     service = BorrowBookService.new(current_user, @book)
 
     if service.call
-      redirect_to books_path, notice: _("Book borrowed successfully")
+      redirect_to my_books_books_path, notice: _("Book borrowed successfully")
     else
-      redirect_to books_path, alert: _("This book can't be borrowed")
+      redirect_to my_books_books_path, alert: _("This book can't be borrowed")
     end
   end
 
@@ -82,10 +82,16 @@ class BooksController < ApplicationController
     service = ReturnBookService.new(current_user, @book)
 
     if service.call
-      redirect_to books_path, notice: _("Book returned successfully")
+      redirect_to my_books_books_path, notice: _("Book returned successfully")
     else
-      redirect_to books_path, alert: _("Something went wrong")
+      redirect_to my_books_books_path, alert: _("Something went wrong")
     end
+  end
+
+  def my_books
+    @books = BookQuery.new(
+      books_params.merge(user_id: current_user.id)
+    ).results
   end
 
   private

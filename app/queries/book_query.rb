@@ -7,6 +7,7 @@ class BookQuery
 
   def results
     prepare_query
+    user_filter
     order_results
     paginate_results
 
@@ -16,7 +17,13 @@ class BookQuery
   private
 
   def prepare_query
-    @results = Book.all.order("title asc")
+    @results = Book.all
+  end
+
+  def user_filter
+    return if @query_params[:user_id].blank?
+
+    @results = @results.eager_load(:borrows).where("borrows.user_id = ?", @query_params[:user_id])
   end
 
   def order_results(default_sort = "title", default_direction = "asc")
