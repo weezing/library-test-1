@@ -6,7 +6,8 @@ describe BorrowBookService do
 
     expect{ service.call }.to change(Borrow, :count).by(1).
       and change(user.borrows, :count).by(1).
-      and change{book.current_quantity}.by(-1)
+      and change{book.current_quantity}.by(-1).
+      and change(Log, :count).by(1)
   end
 
   it "fails when book not available" do
@@ -16,7 +17,8 @@ describe BorrowBookService do
 
     expect{ service.call }.to change(Borrow, :count).by(0).
       and change(user.borrows, :count).by(0).
-      and change{book.current_quantity}.by(0)
+      and change{book.current_quantity}.by(0).
+      and change(Log, :count).by(0)
   end
 
   it "fails when user already has this book" do
@@ -27,6 +29,7 @@ describe BorrowBookService do
 
     expect{ service.call }.to change(Borrow, :count).by(0).
       and change(user.borrows, :count).by(0).
-      and change{book.current_quantity}.by(0)
+      and change{book.current_quantity}.by(0).
+      and change(Log, :count).by(0)
   end
 end
