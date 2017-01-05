@@ -20,8 +20,8 @@ class BookQuery
   end
 
   def order_results(default_sort = "title", default_direction = "asc")
-    direction = query_params[:direction].presence || default_direction
-    sort = query_params[:sort].presence || default_sort
+    direction = query_params[:sort_direction].presence || default_direction
+    sort = query_params[:sort_by].presence || default_sort
 
     @results = @results.order(sort => direction)
   end
