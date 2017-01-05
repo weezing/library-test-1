@@ -7,7 +7,8 @@ class BooksController < ApplicationController
     :update,
     :destroy,
     :borrow,
-    :return
+    :return,
+    :my_books
   ]
   before_action :load_book, only: [
     :show,
