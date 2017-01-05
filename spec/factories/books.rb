@@ -5,6 +5,7 @@ FactoryGirl.define do
     pages 100
     year 1999
     quantity 1
+    current_quantity 1
     isbn "000-000"
   end
 end

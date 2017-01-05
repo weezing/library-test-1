@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :show]
-  before_action :load_book, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :show, :edit, :update, :destroy, :borrow]
+  before_action :load_book, only: [:show, :edit, :update, :destroy, :borrow]
 
   def index
     @books = BookQuery.new(books_params).results
@@ -49,6 +49,16 @@ class BooksController < ApplicationController
       redirect_to books_path, notice: _("Book deleted successfully")
     else
       redirect_to books_path, alert: _("Someone didn't return this book!")
+    end
+  end
+
+  def borrow
+    service = BorrowBookService.new(current_user, @book)
+
+    if service.call
+      redirect_to books_path, notice: _("Book borrowed successfully")
+    else
+      redirect_to books_path, alert: _("Out of stock!")
     end
   end
 

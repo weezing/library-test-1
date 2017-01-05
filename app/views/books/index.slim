@@ -23,4 +23,5 @@
               td
                 = link_to _("Edit"), edit_book_path(book), class: "btn btn-sm btn-warning"
                 = link_to _("Delete"), book_path(book), method: :delete, data: { confirm: _("Are you sure?") }, class: "btn btn-sm btn-danger"
+                = link_to _("Borrow"), borrow_book_path(book), method: :patch, class: "btn btn-sm btn-primary"
     = paginate @books
