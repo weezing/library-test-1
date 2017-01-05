@@ -1,0 +1,2 @@
+class CreateBookService
+end
