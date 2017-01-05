@@ -18,6 +18,12 @@ class UpdateBookService
   end
 
   def recalculate_quantity
-    @book.update_attributes(quantity: @form.attributes[:current_quantity])
+    @book.update_attributes(
+      quantity: current_quantity
+    )
+  end
+
+  def current_quantity
+    @form.attributes[:current_quantity].to_i + Borrow.where(book: @book).count
   end
 end

@@ -15,6 +15,7 @@ describe UpdateBookService do
 
   it "recalculates books quantity" do
     book = create(:book, quantity: 5, current_quantity: 5)
+    create(:borrow, book: book)
     form = double(
       valid?: true,
       attributes: {
@@ -24,7 +25,7 @@ describe UpdateBookService do
 
     service = UpdateBookService.new(form, book)
     expect(service.call).to eq(true)
-    expect(book.reload.quantity).to eq(2)
+    expect(book.reload.quantity).to eq(3)
   end
 
   it "returns false" do

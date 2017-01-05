@@ -39,8 +39,8 @@ class UpdateBookForm
       author: author,
       pages: pages,
       year: year,
-      quantity: 0,
-      current_quantity: 0,
+      quantity: quantity,
+      current_quantity: current_quantity,
       isbn: isbn
     }
   end
