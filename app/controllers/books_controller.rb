@@ -17,13 +17,14 @@ class BooksController < ApplicationController
     :borrow,
     :return
   ]
-  before_action :check_permission, only: [
+  before_action :check_admin_permission, only: [
     :new,
     :create,
     :edit,
     :update,
     :destroy
   ]
+  before_action :check_non_admin_permission, only: :my_books
 
   def index
     @books = BookQuery.new(books_params).results
@@ -105,6 +106,8 @@ class BooksController < ApplicationController
 
   def load_book
     @book = Book.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to root_path, alert: _("Book does not exist")
   end
 
   def books_params
@@ -135,9 +138,15 @@ class BooksController < ApplicationController
     )
   end
 
-  def check_permission
+  def check_admin_permission
     return if current_user.is_admin?
 
     redirect_to root_path, alert: _("You don't have permission do enter here")
+  end
+
+  def check_non_admin_permission
+    return unless current_user.is_admin?
+
+    redirect_to root_path, alert: _("Only for users")
   end
 end
