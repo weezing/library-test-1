@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :show]
+  before_action :load_book, only: [:show, :edit]
 
   def index
     @books = BookQuery.new(books_params).results
@@ -21,10 +22,17 @@ class BooksController < ApplicationController
   end
 
   def show
-    @book = Book.find(params[:id])
+  end
+
+  def edit
+    @form = UpdateBookForm.new(book_attributes)
   end
 
   private
+
+  def load_book
+    @book = Book.find(params[:id])
+  end
 
   def books_params
     params.permit(:per, :page)
@@ -37,7 +45,20 @@ class BooksController < ApplicationController
       :year,
       :pages,
       :isbn,
-      :quantity
+      :quantity,
+      :current_quantity
+    )
+  end
+
+  def book_attributes
+    @book.slice(
+      :title,
+      :author,
+      :year,
+      :pages,
+      :isbn,
+      :quantity,
+      :current_quantity
     )
   end
 end

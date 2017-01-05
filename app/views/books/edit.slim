@@ -1,0 +1,19 @@
+.container
+  .row
+    h1= _("Edit book")
+    hr
+    - if @form.errors.any?
+      .alert.alert-danger
+        ul
+          - @form.errors.full_messages.each do |msg|
+            li= msg
+    = simple_form_for @form, as: :book_form, url: book_path(@book), method: :patch do |f|
+      = f.input :title, input_html: { value: f.object.title }
+      = f.input :author, input_html: { value: f.object.author }
+      = f.input :year, input_html: { value: f.object.year }
+      = f.input :pages, input_html: { value: f.object.pages }
+      = f.input :isbn, input_html: { value: f.object.isbn }
+      = f.input :quantity, input_html: { value: f.object.quantity }
+      = f.input :current_quantity, input_html: { value: f.object.current_quantity }
+      = f.submit _("Save"), class: "btn btn-success"
+    = link_to _("Back"), books_path
