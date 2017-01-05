@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :show]
-  before_action :load_book, only: [:show, :edit, :update]
+  before_action :load_book, only: [:show, :edit, :update, :destroy]
 
   def index
     @books = BookQuery.new(books_params).results
@@ -39,6 +39,16 @@ class BooksController < ApplicationController
       redirect_to books_path, notice: _("Book updated successfully")
     else
       render :edit
+    end
+  end
+
+  def destroy
+    service = DestroyBookService.new(@book)
+
+    if service.call
+      redirect_to books_path, notice: _("Book deleted successfully")
+    else
+      redirect_to books_path, alert: _("Someone didn't return this book!")
     end
   end
 
