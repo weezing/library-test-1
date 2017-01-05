@@ -15,9 +15,10 @@
       strong= _("Quantity: ")
       = "#{@book.current_quantity} / #{@book.quantity}"
     = link_to _("Back"), books_path
-    = link_to _("Edit"), edit_book_path(@book), class: "btn btn-sm btn-warning"
-    = link_to _("Delete"), book_path(@book), method: :delete, data: { confirm: _("Are you sure?") }, class: "btn btn-sm btn-danger"
-    - if current_user
+    - if current_user.is_admin?
+      = link_to _("Edit"), edit_book_path(@book), class: "btn btn-sm btn-warning"
+      = link_to _("Delete"), book_path(@book), method: :delete, data: { confirm: _("Are you sure?") }, class: "btn btn-sm btn-danger"
+    - else
       - if current_user.books.include?(@book)
         = link_to _("Return"), return_book_path(@book), method: :patch, class: "btn btn-sm btn-primary"
       - else

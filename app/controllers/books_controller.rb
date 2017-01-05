@@ -17,6 +17,13 @@ class BooksController < ApplicationController
     :borrow,
     :return
   ]
+  before_action :check_permission, only: [
+    :new,
+    :create,
+    :edit,
+    :update,
+    :destroy
+  ]
 
   def index
     @books = BookQuery.new(books_params).results
@@ -126,5 +133,11 @@ class BooksController < ApplicationController
       :quantity,
       :current_quantity
     )
+  end
+
+  def check_permission
+    return if current_user.is_admin?
+
+    redirect_to root_path, alert: _("You don't have permission do enter here")
   end
 end

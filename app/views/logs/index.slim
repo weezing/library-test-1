@@ -6,7 +6,7 @@
         thead
           tr
             th= _("Date")
-            th= _("User")
+            th= _("User") if current_user.is_admin?
             th= _("Title")
             th= _("Author")
             th= _("Action")
@@ -14,7 +14,7 @@
           - @logs.each do |log|
             tr
               td= log.created_at.strftime("%Y-%m-%d %I:%M %p")
-              td= log.user.email
+              td= log.user.email if current_user.is_admin?
               td= link_to log.book.title, book_path(log.book)
               td= log.book.author
               td= log.action.camelize
