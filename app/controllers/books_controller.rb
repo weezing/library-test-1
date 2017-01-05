@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :show]
-  before_action :load_book, only: [:show, :edit]
+  before_action :load_book, only: [:show, :edit, :update]
 
   def index
     @books = BookQuery.new(books_params).results
@@ -26,6 +26,17 @@ class BooksController < ApplicationController
 
   def edit
     @form = UpdateBookForm.new(book_attributes)
+  end
+
+  def update
+    @form = UpdateBookForm.new(book_attributes, book_form_params)
+    service = UpdateBookService.new(@form)
+
+    if service.call
+      redirect_to books_path, notice: _("Book updated successfully")
+    else
+      render :edit
+    end
   end
 
   private
