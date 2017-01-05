@@ -1,0 +1,12 @@
+.container
+  .row
+    h1= _("Add new book")
+    hr
+    = simple_form_for @form, url: books_path do |f|
+      = f.input :title
+      = f.input :author
+      = f.input :year
+      = f.input :pages
+      = f.input :isbn
+      = f.input :quantity
+      = f.submit _("Save"), class: "btn btn-success"
