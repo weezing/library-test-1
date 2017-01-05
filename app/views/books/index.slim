@@ -1,6 +1,7 @@
 .container
   .row
     h1= _("Books")
+    = link_to _("Add new"), new_book_path, class: "btn btn-success btn-sm"
     table-responsive
       table.table.table-condensed.table-hover
         thead

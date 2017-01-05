@@ -2,6 +2,11 @@
   .row
     h1= _("Add new book")
     hr
+    - if @form.errors.any?
+      .alert.alert-danger
+        ul
+          - @form.errors.full_messages.each do |msg|
+            li= msg
     = simple_form_for @form, as: :book_form, url: books_path, method: :post do |f|
       = f.input :title
       = f.input :author
@@ -10,3 +15,4 @@
       = f.input :isbn
       = f.input :quantity
       = f.submit _("Save"), class: "btn btn-success"
+    = link_to _("Back"), books_path
