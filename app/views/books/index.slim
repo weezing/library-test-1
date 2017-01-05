@@ -20,5 +20,5 @@
               td= book.year
               td= book.pages
               td= "#{book.current_quantity} / #{book.quantity}"
-              td=
+              td= link_to _("Edit"), edit_book_path(book), class: "btn btn-sm btn-warning"
     = paginate @books

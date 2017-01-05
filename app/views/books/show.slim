@@ -14,4 +14,5 @@
     p
       strong= _("Quantity: ")
       = "#{@book.current_quantity} / #{@book.quantity}"
-    = link_to _("Back"), books_path
+    = link_to _("Edit"), edit_book_path(@book), class: "btn btn-sm btn-warning"
+  = link_to _("Back"), books_path
