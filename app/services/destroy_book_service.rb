@@ -10,6 +10,12 @@ class DestroyBookService
   private
 
   def destroy_book
+    return false if book_borrowed?
+
     @book.destroy
+  end
+
+  def book_borrowed?
+    Borrow.where(book: @book).any?
   end
 end

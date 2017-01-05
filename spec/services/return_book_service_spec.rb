@@ -2,7 +2,7 @@ describe ReturnBookService do
   it "call: user returns a book" do
     user = create(:user)
     book = create(:book)
-    borrow = create(:borrow, user: user, book: book)
+    create(:borrow, user: user, book: book)
     service = ReturnBookService.new(user, book)
 
     expect{ service.call }.to change(Borrow, :count).by(-1).
