@@ -2,11 +2,14 @@ describe CreateBookService do
   it "call: create book" do
     form = double(
       valid?: true,
-      attributes: {}
+      attributes: {
+        quantity: 3
+      }
     )
 
     service = CreateBookService.new(form)
     expect { service.call }.to change(Book, :count).by(1)
+    expect(Book.last.current_quantity).to eq(3)
   end
 
   it "invalid form" do
