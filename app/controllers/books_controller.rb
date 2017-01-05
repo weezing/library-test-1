@@ -30,7 +30,7 @@ class BooksController < ApplicationController
 
   def update
     @form = UpdateBookForm.new(book_attributes, book_form_params)
-    service = UpdateBookService.new(@form)
+    service = UpdateBookService.new(@form, @book)
 
     if service.call
       redirect_to books_path, notice: _("Book updated successfully")
