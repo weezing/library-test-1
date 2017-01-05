@@ -2,6 +2,7 @@ class UpdateBookForm
   include ActiveModel::Model
 
   attr_accessor(
+    :id,
     :title,
     :author,
     :pages,
@@ -26,7 +27,7 @@ class UpdateBookForm
     only_integer: true,
     greater_than_or_equal_to: 0
   }
-  validates_with IsbnUniquenessValidator
+  validates_with UpdateBookIsbnUniquenessValidator
 
   def initialize(book_attributes, form_attributes = {})
     super book_attributes.merge(form_attributes)

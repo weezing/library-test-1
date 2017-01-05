@@ -6,7 +6,7 @@ describe UpdateBookForm do
       year: 2000,
       pages: 200,
       current_quantity: 2,
-      isbn: "111-111"
+      isbn: "000-000"
     }
 
     form = UpdateBookForm.new({}, params)
@@ -223,6 +223,21 @@ describe UpdateBookForm do
 
       expect(form.valid?).to eq false
       expect(form.errors[:isbn]).to include("has already been taken")
+    end
+
+    it "isbn: uniqueness (ignores itself)" do
+      book1 = create(:book, isbn: "000-000")
+      params = {
+        title: "Title",
+        author: "Author",
+        year: 2000,
+        pages: 200,
+        current_quantity: 2,
+        isbn: "000-000"
+      }
+      form = UpdateBookForm.new({ id: book1.id }, params)
+
+      expect(form.valid?).to eq true
     end
   end
 end

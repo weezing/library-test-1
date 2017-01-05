@@ -29,7 +29,10 @@ class BooksController < ApplicationController
   end
 
   def update
-    @form = UpdateBookForm.new(book_attributes, book_form_params)
+    @form = UpdateBookForm.new(
+      book_attributes.merge(id: @book.id),
+      book_form_params
+    )
     service = UpdateBookService.new(@form, @book)
 
     if service.call

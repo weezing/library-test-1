@@ -25,7 +25,7 @@ class CreateBookForm
     only_integer: true,
     greater_than_or_equal_to: 0
   }
-  validates_with IsbnUniquenessValidator
+  validates_with CreateBookIsbnUniquenessValidator
 
   def attributes
     {
