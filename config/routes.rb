@@ -6,4 +6,5 @@ Rails.application.routes.draw do
     patch :return, on: :member
     get :my_books, on: :collection
   end
+  get "history" => "logs#index"
 end

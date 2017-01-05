@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   devise :confirmable, :database_authenticatable, :lockable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
-   has_many :borrows
-   has_many :books, through: :borrows
+  has_many :borrows
+  has_many :books, through: :borrows
+  has_many :logs
 end

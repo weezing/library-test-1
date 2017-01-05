@@ -9,6 +9,7 @@ class ReturnBookService
 
     return_book
     recalculate_current_quantity
+    add_log
   end
 
   private
@@ -25,5 +26,9 @@ class ReturnBookService
   def recalculate_current_quantity
     @book.current_quantity += 1
     @book.save
+  end
+
+  def add_log
+    Log.create(book: @book, user: @user, action: "return")
   end
 end

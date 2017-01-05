@@ -9,6 +9,7 @@ class BorrowBookService
 
     borrow_book
     recalculate_current_quantity
+    add_log
   end
 
   private
@@ -27,5 +28,9 @@ class BorrowBookService
   def recalculate_current_quantity
     @book.current_quantity -= 1
     @book.save
+  end
+
+  def add_log
+    Log.create(book: @book, user: @user, action: "borrow")
   end
 end

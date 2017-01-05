@@ -1,0 +1,21 @@
+.container
+  .row
+    h1= _("History")
+    table-responsive
+      table.table.table-condensed.table-hover
+        thead
+          tr
+            th= _("Date")
+            th= _("User")
+            th= _("Title")
+            th= _("Author")
+            th= _("Action")
+        tbody
+          - @logs.each do |log|
+            tr
+              td= log.created_at.strftime("%Y-%m-%d %I:%M %p")
+              td= log.user.email
+              td= link_to log.book.title, book_path(log.book)
+              td= log.book.author
+              td= log.action.camelize
+    = paginate @logs
