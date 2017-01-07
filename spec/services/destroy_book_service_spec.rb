@@ -1,9 +1,11 @@
 describe DestroyBookService do
   it "destroys book" do
     book = create(:book)
+    create(:log, book: book)
     service = DestroyBookService.new(book)
 
-    expect{ service.call }.to change(Book, :count).by(-1)
+    expect{ service.call }.to change(Book, :count).by(-1).
+      and change(Log, :count).by(-1)
   end
 
   it "does not destroy book if borrowed" do
