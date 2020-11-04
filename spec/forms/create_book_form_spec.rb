@@ -101,7 +101,7 @@ describe CreateBookForm do
       form = CreateBookForm.new(params)
 
       expect(form.valid?).to eq false
-      expect(form.errors[:year]).to include("must be less than or equal to 2017")
+      expect(form.errors[:year]).to include("must be less than or equal to #{Time.zone.now.year}")
     end
 
     it "pages: presence" do
