@@ -11,7 +11,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'omniauth-google-oauth2', '~> 0.2.1'
-gem 'pg', '~> 0.15'
+gem 'pg', '~> 0.18'
 gem 'rails', '4.2.7.1'
 gem 'sass-rails', '~> 5.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
