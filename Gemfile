@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.3.1'
+ruby '2.7.2'
 
 gem 'bootstrap', '~> 4.0.0.alpha5'
 gem 'coffee-rails', '~> 4.1.0'
@@ -12,7 +12,7 @@ gem 'jquery-rails'
 gem 'kaminari'
 gem 'omniauth-google-oauth2', '~> 0.2.1'
 gem 'pg', '~> 0.18'
-gem 'rails', '4.2.7.1'
+gem 'rails'
 gem 'sass-rails', '~> 5.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'select2-rails'
