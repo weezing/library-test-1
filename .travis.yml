@@ -6,6 +6,7 @@ services:
 - postgresql
 before_script:
 - bundle install
+- cp config/database.yml.example config/database.yml
 - bundle exec rake db:create
 - bundle exec rake db:schema:load
 bundler_args: "--without development production --deployment"
