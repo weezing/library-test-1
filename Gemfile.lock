@@ -310,7 +310,7 @@ GEM
       json_pure (~> 2.3)
       launchy (~> 2.1, < 2.5.0)
       pusher-client (~> 0.4)
-    tzinfo (1.2.7)
+    tzinfo (1.2.10)
       thread_safe (~> 0.1)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
